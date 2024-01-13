@@ -1,0 +1,508 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/select2.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sweetalert2.min.css' %}">
+        <!-- <meta name="_token" content="cz1XSNZKflf4cPV6xqyvN6IQG9EP5qJJfxISAr9n"> -->
+    
+        
+        <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+        <title>    BTPE User Home
+    </title>
+        
+    <style>
+            .c-container {
+                background: transparent;
+            }
+    
+            .c-container::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 540px;
+                z-index: -1;
+                background: url("assets/img/bg_3.jpg") no-repeat;
+                background-size: cover;
+                /* zoom: 150%; */
+                opacity: 0.7;
+            }
+    
+            .c-container::after {
+                position: absolute;
+                top: 700px;
+                width: 100%;
+                height: 760px;
+                content: '';
+                z-index: -1;
+                opacity: .8;
+                background: linear-gradient(45deg, #0d1128 0%, #056A58 100%);
+            }
+    
+            .c-content {
+                padding: 160px;
+            }
+    
+            .c-container h1, h2 {
+                color: rgba(255, 255, 255, 0.9);
+                font-weight: 700;
+            }
+    
+            .c-container p,
+            .c-container li {
+                /* font-family: "Poppins", Arial, sans-serif; */
+                font-size: 15px;
+                /* font-weight: bold; */
+                color: rgba(255, 255, 255, 0.9);
+            }
+    
+    
+            @media only screen and (min-widht: 800px) {
+                .c-container::before {
+                    display: block;
+                }
+    
+                .c-container::after {
+                    display: block;
+                }
+            }
+    
+    
+            @media only screen and (max-width: 800px) {
+                .c-container::before {
+                    display: none;
+                }
+    
+                .c-container::after {
+                    display: none;
+                }
+    
+                .c-content {
+                    padding: 8px;
+                }
+    
+                .c-container {
+                    background: linear-gradient(45deg, #0d1128 0%, #056A58 100%);
+                    padding-bottom: 10px;
+                }
+    
+                .c-container h1 {
+                    color: rgba(255, 255, 255, 0.9);
+                    font-size: 22px;
+                }
+    
+                .c-container p,
+                .c-container li {
+                    /* font-family: "Poppins", Arial, sans-serif; */
+                    font-size: 12px;
+                    /* font-weight: bold; */
+                    color: rgba(255, 255, 255, 0.9);
+                }
+    
+                .carousel_image {
+                    height: 20rem !important;
+                }
+            }
+    </style>
+        
+        <style>
+            * {
+                /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+                font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+    
+            .ham-button-container {
+                display: none !important;
+            }
+    
+            .custom-navbar {
+                background-color: #056A58;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 70px;
+            }
+    
+            .custom-navbar a {
+                font-size: 14px;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+    
+            .custom-navbar .custom-dropdown button {
+                font-size: 14px;
+            }
+    
+    
+            .custom-dropdown .dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: white;
+                padding: 23px 16px;
+                background-color: inherit;
+                font-family: inherit;
+            }
+    
+            .custom-navbar a:hover,
+            .custom-dropdown:hover .dropbtn {
+                font-weight: bold;
+            }
+    
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                max-height: 60vh;
+                overflow: auto;
+            }
+    
+            .dropdown-content a {
+                color: black;
+                font-size: 14px;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+    
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+    
+            .custom-dropdown:hover .dropdown-content {
+                display: block;
+            }
+    
+            footer * {
+                color: #777;
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                font-size: 17px;
+            }
+    
+            /* @media only screen and (min-widht: 800px) {
+                .ham-button-container {
+                    display: none !important;
+                }
+    
+                .top-navbar {
+                    display: flex;
+                }
+    
+                .custom-navbar {
+                    display: flex;
+                }
+    
+            } */
+    
+    
+            @media only screen and (max-width: 800px) {
+                .top-navbar {
+                    display: none;
+                }
+    
+                .ham-button-container {
+                    display: flex !important;
+                }
+    
+                .navbar-logo {
+                    display: none;
+                }
+                
+                #top-header-logo {
+                    display: none;
+                }
+    
+                /* .custom-navbar {
+                    flex-direction: column;
+                    height: 100vh;
+                    display: none;
+                } */
+    
+                .custom-navbar {
+                    flex-direction: column;
+                    overflow: hidden;  /* Hide the element content, while height = 0 */
+                    height: 0;
+                    transition: height 600ms ease-in-out;
+                }
+    
+    
+                .ham-button div {
+                    width: 40px;
+                    height: 5px;
+                    background-color: black;
+                    margin: 6px 0;
+                }
+    
+                .ham-button {
+                    padding: 3px;
+                    border-radius: 5px;
+                }
+    
+                .ham-button:hover {
+                    cursor: pointer;
+                    background: linear-gradient(145deg, rgb(204, 202, 192), transparent);
+                }
+    
+                .dropdown-content a {
+                    width: 50vw;
+                }
+    
+    
+            }
+    
+    
+    
+            /* desing for heading below navbar */
+            .hero-wrap {
+                width: 100%;
+                height: 100%;
+                position: inherit;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+                position: relative;
+                background: url("assets/img/bg_1.jpg") no-repeat;
+                background-size: cover;
+            }
+            .hero-wrap.hero-wrap-2 {
+                height: 250px;
+            }
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                content: '';
+                opacity: .3;
+                background: #056A58;
+                z-index: -2;
+            }
+    
+            .hero-wrap .container{
+                z-index: 2;
+            }
+            
+            .hero-wrap.hero-wrap-2 .slider-text .bread {
+                font-weight: 900;
+                color: #fff;
+            }
+    
+            .hero-wrap.hero-wrap-2 .slider-text .breadcrumbs * {
+                text-transform: uppercase;
+                font-size: 13px;
+                letter-spacing: 1px;
+                color: #fff;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+<body>
+    <div class="container-fluid p-4" style="border-bottom: 1px solid black;">
+        <div class="row d-flex justify-content-center">
+            <div class="col-2" id="top-header-logo">
+                <a href="index.html">
+                    <img src="{% static 'img/logo.png' %}" alt="logo" width="200" height="150">
+                </a>
+            </div>
+            <div class="col-md-8 col-md-8 col-sm-12 d-flex justify-content-center align-items-center">
+                <div class="fw-bold fs-3 text-start w-100" style="font-family: Georgia, 'Times New Roman', Times, serif;">
+                    BOARD OF PROFESSIONAL AND TECHNICAL EDUCATION BALOCHISTAN
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="custom-navbar" id="custom-navbar">
+        
+        <a href="index.html">Home</a>
+        <a href="user_about.html">About</a>
+        <div class="custom-dropdown">
+            <button class="dropbtn">Trades/ Courses <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                                    <a href="list_course_programscf1a.html?course_id=37">(JEWELLARY-MAKING)</a>
+                                    <a href="list_course_programs94f5.html?course_id=1">BUSINESS ADMINISTRATION &amp; MANAGEMENT</a>
+                                    <a href="list_course_programsb2fa.html?course_id=4">CERTIFIED FINANCIAL ANALYST &amp; TREASURY MANAGEMENT</a>
+                                    <a href="list_course_programs6e1c.html?course_id=5">CERTIFIED PROFESSIONAL MANAGEMENT PROGRAMS</a>
+                                    <a href="list_course_programsdfa5.html?course_id=6">CLINICAL MEDICAL PROGRAMS</a>
+                                    <a href="list_course_programsd6c3.html?course_id=7">COMMUNICATION &amp; LANGUAGES</a>
+                                    <a href="list_course_programs20c7.html?course_id=9">EDUCATIONAL DIPLOMAS</a>
+                                    <a href="list_course_programs9c2c.html?course_id=10">ENGINEERING AND TECHNICAL</a>
+                                    <a href="list_course_programs5958.html?course_id=11">ENGINEERING DIPLOMAS</a>
+                                    <a href="list_course_programsf09b.html?course_id=12">ENGINEERING PROGRAMS</a>
+                                    <a href="list_course_programsc71a.html?course_id=13">FASHION &amp; MEDIA</a>
+                                    <a href="list_course_programs31db.html?course_id=28">GENERAL EDUCATION</a>
+                                    <a href="list_course_programs7ab2.html?course_id=14">HEALTH CARE COURSES</a>
+                                    <a href="list_course_programs4616.html?course_id=34">HEALTH SAFETY AND ENVIRONMENTAL</a>
+                                    <a href="list_course_programsb7bd.html?course_id=35">HEALTH SAFETY AND ENVIRONMENTAL</a>
+                                    <a href="list_course_programs7c7f.html?course_id=30">HIGHER SECONDARY SCHOOL CERTIFICATE (HSSC)</a>
+                                    <a href="list_course_programs26f0.html?course_id=15">HOBBIES, DIY, PHOTOGRAPHY</a>
+                                    <a href="list_course_programs9dd1.html?course_id=16">HOTEL &amp; CATERING INDUSTRY</a>
+                                    <a href="list_course_programsefbf.html?course_id=17">HOTEL INDUSTRY</a>
+                                    <a href="list_course_programs3f40.html?course_id=18">INFORMATION TECHNOLOGY</a>
+                                    <a href="list_course_programs4f60.html?course_id=19">MANAGEMENT COURSES</a>
+                                    <a href="list_course_programs5e3b.html?course_id=20">MEDICAL COURSES</a>
+                                    <a href="list_course_programs04d2.html?course_id=27">MIDWIFERY</a>
+                                    <a href="list_course_programs8073.html?course_id=21">MISC COURSES</a>
+                                    <a href="list_course_programsaf1d.html?course_id=38">MUSIC ART</a>
+                                    <a href="list_course_programsee5c.html?course_id=8">NETWORKING &amp; PROGRAMMING</a>
+                                    <a href="list_course_programsae4a.html?course_id=26">OPERATION THEATER TECHNICIAN</a>
+                                    <a href="list_course_programse427.html?course_id=22">PROFESSIONAL COURSES</a>
+                                    <a href="list_course_programsf311.html?course_id=23">SAFETY &amp; SECURITY PROGRAMS</a>
+                                    <a href="list_course_programs71e8.html?course_id=29">SECONDARY SCHOOL CERTIFICATE (SSC)</a>
+                                    <a href="list_course_programs56c6.html?course_id=31">SECONDARY SCHOOL CERTIFICATE (SSC)</a>
+                                    <a href="list_course_programs075f.html?course_id=32">SECONDARY SCHOOL CERTIFICATE (SSC)</a>
+                                    <a href="list_course_programs00cd.html?course_id=33">SECONDARY SCHOOL CERTIFICATE (SSC)</a>
+                                    <a href="list_course_programs5fe9.html?course_id=24">SKIN CARE &amp; BEAUTY SALOON PROGRAMS</a>
+                                    <a href="list_course_programs19a8.html?course_id=25">VOCATIONAL &amp; TECHANICAL TRADE PROGRAMS</a>
+                            </div>
+        </div>
+
+        <div class="custom-dropdown">
+            <button class="dropbtn">E-services <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="#">Info E-Services</a>
+                <a href="#">Students Material</a>
+                <a href="#">Teacher Material</a>
+                <a href="#">Syllabus &amp; Modal Papers</a>
+            </div>
+        </div>
+
+        <div class="custom-dropdown">
+            <button class="dropbtn">Apply Online <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="admission_apply_online.html">Student Admission</a>
+                <a href="#">Institute Affiliation</a>
+                <a href="#">Online Exam</a>
+            </div>
+        </div>
+
+        
+
+        
+        <div class="custom-dropdown">
+            <button class="dropbtn">Verification <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="student_verification.html">Diploma Verification</a>
+                <a href="#">Letter Verification</a>
+                <a href="#">Institute Registration</a>
+                <a href="#">Coordinator Registration</a>
+            </div>
+        </div>
+
+        
+        <a href="challan.html">Challan</a>
+        <a href="partner_institutes.html">Partner Institutes</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="contact_us.html">Contact</a>
+                <a href="login.html">Login</a>
+    </div>
+
+    {% block content %}
+    {% endblock content %}
+
+    <footer class="" style="padding: 3rem 0;background-color: #232323;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 pr-md-5">
+                    <a href="#" class="footer-site-logo d-block mb-4 text-white">BPTE</a>
+                    <div class="mb-3 mt-5">
+                        <ul>
+                            <li class="text-white">
+                                3rd floor, 58/62-L ,Baig Plaza Opposite SILK Bank Canning Road,Saddar, Rawalpindi
+                            </li>
+                            <li>
+                                <a href="tel: +92 313 575 8822"><span class="text text-white">+92 313 575 8822</span></a>
+                            </li>
+                            <li>
+                                <a href="cdn-cgi/l/email-protection.html#a080c9cec6cfe0c2d0d4c5c98ec5c4d58ed0cb"><span class="text text-white"><span class="__cf_email__" data-cfemail="c2abaca4ad82a0b2b6a7abeca7a6b7ecb2a9">[email&#160;protected]</span></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <h4 class="text-white">Quick Links</h4>
+                    <ul class="list-unstyled nav-links mt-5">
+                        <li><a href="index.html" class="text-white">Home</a></li>
+                        <li><a href="#" class="text-white">About</a></li>
+                        <li><a href="#" class="text-white">Trades Us</a></li>
+                        <li><a href="#" class="text-white">Apply Online</a></li>
+                        <li><a href="student_verification.html" class="text-white">Verification</a></li>
+                        <li><a href="#" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md">
+                    <h4 class="text-white">Downloads</h4>
+                    <ul class="list-unstyled nav-links mt-5">
+                        <li><a href="#" class="text-white">AFFILIATION FORM</a></li>
+                        <li><a href="#" class="text-white">APPLICATION FORM FOR CORRECTION IN NAME</a></li>
+                        <li><a href="#" class="text-white">BEFORE TIME CERTIFICATE DIPLOMA FORM</a></li>
+                        <li><a href="#" class="text-white">EXAMINATION ADMISSION FORM</a></li>
+                        <li><a href="#" class="text-white">RETOTALING FORM</a></li>
+                        <li><a href="#" class="text-white">VERIFICATION FORM</a></li>
+                        <li><a href="#" class="text-white">EXAM RESULT SHEET</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="row ">
+                <div class="col-12 text-center">
+                    <div class="copyright mt-2 pt-2">
+                        <p><small class="text-white">© 2023 All Rights Reserved.</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+
+    <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.6.3.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/select2.min.js"></script>
+    <script src="assets/js/sweetalert2.all.min.js"></script>
+        
+
+    <script>
+
+        $(document).ready(function() {
+            $('.select2').select2({
+                width: '100%',
+                placeholder: 'Select an option',
+            });
+        });
+
+        function toggleNavbar() {
+            var x = document.getElementById("custom-navbar");
+            // if (x.style.display === "flex") {
+            //     x.style.display = "none";
+            // } else {
+                //     x.style.display = "flex";
+                // }
+            if (x.style.height == "100vh") {
+                x.style.height = 0;
+                x.style.overflow = "hidden";
+            } else {
+                x.style.height = "100vh";
+            }
+        }
+
+    </script>
+</body>
+</html>

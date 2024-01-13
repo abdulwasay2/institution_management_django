@@ -1,0 +1,17 @@
+appdirs
+asgiref
+black
+Django
+django-widget-tweaks
+flake8
+isort
+mccabe
+mypy-extensions
+pathspec
+Pillow
+pycodestyle
+pyflakes
+pytz
+regex
+sqlparse
+tomli
