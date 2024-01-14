@@ -15,3 +15,5 @@ pytz
 regex
 sqlparse
 tomli
+django-ckeditor
+djangorestframework
